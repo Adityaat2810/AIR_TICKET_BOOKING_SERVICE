@@ -4,7 +4,8 @@ const app = express();
 
 const apiRoutes =require('./routes/index')
 const {PORT} = require('./config/serverConfig')
-const db = require('./models/index')
+const db = require('./models/index');
+const { Error } = require('sequelize');
 
 const setupAndStartServer =()=>{
 
@@ -15,7 +16,6 @@ const setupAndStartServer =()=>{
 
     app.listen(PORT,()=>{
         console.log(`Server is listeming on port ${PORT}`);
-        
         if(process.env.DB_SYNC){
             db.sequelize.sync({alter:true});
         }
