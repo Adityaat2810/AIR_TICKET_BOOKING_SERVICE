@@ -41,7 +41,12 @@ class BookingService{
                 totalSetsAvailable:flightData.totalSetsAvailable-booking.noOfSeats
             });
 
-            return booking;
+            // update the booking
+            const finalBooking=await this.bookingRepository.update(
+                booking.id,{status:"Booked"}
+            )
+
+            return finalBooking;
 
         }catch(error){
            if(
